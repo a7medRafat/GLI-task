@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
-
-import '../../style/app_colors.dart';
+import 'package:gli/config/style/app_fonts.dart';
+import 'package:gli/config/style/icons_broken.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class MySnackBar {
-  snackBarMessage(context, String msg) =>
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height - 80,
-              left: 10,
-              right: 10),
-          behavior: SnackBarBehavior.floating,
-          padding: const EdgeInsets.all(20),
-          backgroundColor: AppColors.mainColor,
-          elevation: 2,
-          content: Text(
-            msg,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall!
-                .copyWith(color: AppColors.fBlack),
-          )));
+  static show (context, String msg) => showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.info(
+          textStyle: AppFonts.regular1,
+          icon: const Icon(IconBroken.Info_Circle, color: Colors.white),
+          message: msg,
+          backgroundColor: Colors.white,
+        ),
+      );
 }

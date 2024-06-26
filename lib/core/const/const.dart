@@ -1,7 +1,0 @@
-String? uid;
-String? token;
-
-
-
-
-

@@ -1,13 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../../authentication/data/models/register_model.dart';
+
+import '../../../Features/authentication/data/models/register_model.dart';
 
 abstract class AuthByFirebase {
   Future<UserCredential> signInWithMailAndPass(
       {required String email, required String password});
 
   Future<UserCredential> googleSignIn();
+
   Future<UserCredential> facebookSignIn();
 
   Future<UserCredential> createUserWithEmailAndPass(
@@ -32,10 +34,11 @@ class AuthByFirebaseImpl implements AuthByFirebase {
   }
 
   @override
-  Future<UserCredential> googleSignIn() async{
+  Future<UserCredential> googleSignIn() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -45,11 +48,11 @@ class AuthByFirebaseImpl implements AuthByFirebase {
   }
 
   @override
-  Future<UserCredential> facebookSignIn() async{
-
+  Future<UserCredential> facebookSignIn() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../authentication/data/models/current_user_model.dart';
+import '../../../Features/authentication/data/models/current_user_model.dart';
 import '../../shared_preferances/cache_helper.dart';
 
 abstract class StorageByFirebase {

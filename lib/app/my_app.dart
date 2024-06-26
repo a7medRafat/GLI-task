@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gli/authentication/cubit/login_cubit/login_cubit.dart';
-import 'package:gli/authentication/presentation/screens/login_screen/login_screen.dart';
-import '../authentication/cubit/register_cubit/register_cubit.dart';
-import '../style/app_theme/app_themes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gli/Features/authentication/cubit/login_cubit/login_cubit.dart';
+import 'package:gli/Features/authentication/presentation/screens/login_screen/login_screen.dart';
+import '../Features/authentication/cubit/register_cubit/register_cubit.dart';
 import 'injuctoin_container.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,10 +16,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<LoginCubit>()),
         BlocProvider(create: (context) => sl<RegisterCubit>()),
       ],
-      child: MaterialApp(
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) => const MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: appTheme(),
-          home: LoginScreen()),
+          home: LoginScreen(),
+        ),
+      ),
     );
   }
 }
