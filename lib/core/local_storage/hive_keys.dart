@@ -1,3 +1,3 @@
 class HiveKeys {
-  static const currentUser = "currentUser";
+  static const user = "currentUser";
 }

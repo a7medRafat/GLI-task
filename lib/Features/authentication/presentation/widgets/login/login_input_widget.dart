@@ -32,6 +32,7 @@ class _LoginInputWidgetState extends State<LoginInputWidget> {
               hint: AppStrings.email,
               prefixIcon: const Icon(IconBroken.Message),
               isPassword: false,
+              borderSide: true,
               borderRadius: BorderRadius.circular(20),
               textInputType: TextInputType.emailAddress,
               validation: (value) {
@@ -50,6 +51,7 @@ class _LoginInputWidgetState extends State<LoginInputWidget> {
               hint: AppStrings.password,
               prefixIcon: const Icon(IconBroken.Lock),
               borderRadius: BorderRadius.circular(20),
+              borderSide: true,
               suffixIcon: widget.isPassword ? IconBroken.Show : IconBroken.Hide,
               suffixPressed: () {
                 setState(() {

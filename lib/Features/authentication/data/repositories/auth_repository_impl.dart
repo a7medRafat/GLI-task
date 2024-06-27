@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gli/core/local_storage/hive_keys.dart';
+import 'package:gli/core/local_storage/user_storage.dart';
 import '../../../../config/Strings/app_strings.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
@@ -28,8 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
             email: registerBody.email!,
             phone: registerBody.phone!,
             uid: response.user!.uid,
-            image: AppStrings.newUser,
-            bio: AppStrings.newBio);
+            image: AppStrings.newUser);
         final addUser = await addUserToFireStore(currentUser: user);
         addUser.fold((failure) {
           return Left(failure);
@@ -60,6 +61,7 @@ class AuthRepositoryImpl implements AuthRepository {
           },
           (currentUser) async {
             CacheHelper.saveData(key: 'uid', value: currentUser.uid);
+            UserData().saveData(id: HiveKeys.user, data: currentUser);
           },
         );
         return right(remoteLogin);

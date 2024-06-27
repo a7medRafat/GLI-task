@@ -16,8 +16,6 @@ class CurrentUser extends HiveObject {
   String? uid;
   @HiveField(5)
   String? image;
-  @HiveField(6)
-  String? bio;
 
   CurrentUser(
       {required this.name,
@@ -25,8 +23,7 @@ class CurrentUser extends HiveObject {
       this.password,
       required this.phone,
       required this.uid,
-      required this.image,
-      required this.bio});
+      required this.image});
 
   CurrentUser.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -35,7 +32,6 @@ class CurrentUser extends HiveObject {
     phone = json['phone'];
     uid = json['uid'];
     image = json['image'];
-    bio = json['bio'];
   }
 
   Map<String, dynamic> toJson() {
@@ -45,8 +41,7 @@ class CurrentUser extends HiveObject {
       'password': password,
       'phone': phone,
       'uid': uid,
-      'image': image,
-      'bio': bio
+      'image': image
     };
   }
 }

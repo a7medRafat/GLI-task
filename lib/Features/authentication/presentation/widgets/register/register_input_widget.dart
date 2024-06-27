@@ -28,6 +28,7 @@ class _RegisterInputWidgetState extends State<RegisterInputWidget> {
         child: Column(
           children: [
             DefaultField(
+              borderSide: true,
               borderRadius: BorderRadius.circular(20),
               controller: sl<RegisterCubit>().nameController,
               hint: AppStrings.name,
@@ -42,6 +43,7 @@ class _RegisterInputWidgetState extends State<RegisterInputWidget> {
             ),
             SizedBox(height: 10.h),
             DefaultField(
+              borderSide: true,
               borderRadius: BorderRadius.circular(20),
               controller: sl<RegisterCubit>().emailController,
               hint: 'email',
@@ -61,6 +63,7 @@ class _RegisterInputWidgetState extends State<RegisterInputWidget> {
             ),
             SizedBox(height: 10.h),
             DefaultField(
+              borderSide: true,
               borderRadius: BorderRadius.circular(20),
               controller: sl<RegisterCubit>().passwordController,
               hint: AppStrings.password,
@@ -86,6 +89,7 @@ class _RegisterInputWidgetState extends State<RegisterInputWidget> {
             ),
             SizedBox(height: 10.h),
             DefaultField(
+              borderSide: true,
               borderRadius: BorderRadius.circular(20),
               controller: sl<RegisterCubit>().phoneController,
               hint: AppStrings.phone,

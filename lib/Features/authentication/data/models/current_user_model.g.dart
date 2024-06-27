@@ -23,14 +23,13 @@ class CurrentUserAdapter extends TypeAdapter<CurrentUser> {
       phone: fields[3] as String?,
       uid: fields[4] as String?,
       image: fields[5] as String?,
-      bio: fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, CurrentUser obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -42,10 +41,7 @@ class CurrentUserAdapter extends TypeAdapter<CurrentUser> {
       ..writeByte(4)
       ..write(obj.uid)
       ..writeByte(5)
-      ..write(obj.image)
-      ..writeByte(6)
-      ..write(obj.bio)
-      ..writeByte(7);
+      ..write(obj.image);
   }
 
   @override

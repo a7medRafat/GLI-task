@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:gli/core/app_functions/app_functions.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../Features/authentication/cubit/login_cubit/login_cubit.dart';
 import '../Features/authentication/cubit/register_cubit/register_cubit.dart';
@@ -33,8 +34,8 @@ Future<void> init() async {
   sl.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(connectionChecker: sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker());
-  sl.registerLazySingleton<LocalStorage>(() => UserStorage());
-  sl.registerLazySingleton<UserStorage>(() => UserStorage());
+  sl.registerLazySingleton<LocalStorage>(() => UserData());
+  sl.registerLazySingleton<UserData>(() => UserData());
 
   ///// login /////
 
@@ -42,4 +43,8 @@ Future<void> init() async {
       () => LoginCubit(userLoginUseCase: sl()));
   sl.registerLazySingleton<UserLoginUseCase>(
       () => UserLoginUseCase(authRepository: sl()));
+
+  ////  /////
+  sl.registerLazySingleton<AppFunctions>(() => AppFunctionsImpl());
+  sl.registerLazySingleton<LocalStorage>(() => UserData());
 }

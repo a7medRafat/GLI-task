@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gli/Features/authentication/cubit/login_cubit/login_cubit.dart';
 import 'package:gli/Features/authentication/cubit/register_cubit/register_cubit.dart';
 import 'package:gli/Features/authentication/presentation/screens/login_screen/login_screen.dart';
+
 import 'injuctoin_container.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Widget startWidget;
+  const MyApp({super.key, required this.startWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,9 @@ class MyApp extends StatelessWidget {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (_, child) => const MaterialApp(
+        builder: (_, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: LoginScreen(),
+          home: startWidget,
         ),
       ),
     );

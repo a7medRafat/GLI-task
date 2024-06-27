@@ -19,7 +19,9 @@ class DefaultField extends StatelessWidget {
   final Function(String)? onChanged;
   final BorderRadius? borderRadius;
   final EdgeInsetsGeometry? padding;
-  bool? borderSide = true;
+  bool borderSide;
+  bool? filled = false;
+  int? maxLines;
 
   DefaultField({
     super.key,
@@ -37,13 +39,16 @@ class DefaultField extends StatelessWidget {
     this.padding,
     this.suffixTextBtn,
     this.onChanged,
-    this.borderSide,
+    required this.borderSide,
+    this.filled,
     this.borderRadius,
+    this.maxLines,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines ?? 1,
       onChanged: onChanged,
       keyboardType: textInputType,
       validator: validation,
@@ -54,7 +59,7 @@ class DefaultField extends StatelessWidget {
         contentPadding:
             padding ?? const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
         border: OutlineInputBorder(
-            borderSide: BorderSide(width: 0.7, color: AppColors.bodyText3),
+            borderSide: borderSide ? BorderSide(width: 0.7, color: AppColors.bodyText3) : BorderSide.none,
             borderRadius: borderRadius!),
         prefixIcon: prefixIcon,
         suffixIcon: IconButton(
@@ -63,7 +68,7 @@ class DefaultField extends StatelessWidget {
         suffixText: suffixText,
         hintText: hint,
         hintStyle: AppFonts.regular1,
-        filled: false,
+        filled: filled,
         fillColor: Colors.white,
       ),
     );

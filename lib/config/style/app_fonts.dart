@@ -14,9 +14,15 @@ class AppFonts {
       fontSize: 24.0.sp,
       color: AppColors.headLine2);
 
+  static TextStyle headline3 = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16.0.sp,
+      color: AppColors.headLine2);
+
   static TextStyle bodyText1 = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 16.0.sp,
+    color: AppColors.headLine1
   );
 
   static TextStyle bodyText2 = TextStyle(
@@ -33,6 +39,11 @@ class AppFonts {
       fontWeight: FontWeight.normal,
       fontSize: 14.0.sp,
       color: AppColors.headLine2);
+
+  static TextStyle regular2 = TextStyle(
+      fontWeight: FontWeight.normal,
+      fontSize: 14.0.sp,
+      color: AppColors.bodyText3);
 
 
 }

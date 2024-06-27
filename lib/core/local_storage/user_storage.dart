@@ -3,12 +3,12 @@ import '../../Features/authentication/data/models/current_user_model.dart';
 import 'hive_keys.dart';
 import 'local_storage.dart';
 
-class UserStorage implements LocalStorage<CurrentUser> {
+class UserData implements LocalStorage<CurrentUser> {
   static Box<CurrentUser>? _box;
 
   @override
   Future<void> init() async {
-    _box = await Hive.openBox(HiveKeys.currentUser);
+   _box = await Hive.openBox(HiveKeys.user);
   }
 
   @override

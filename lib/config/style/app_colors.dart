@@ -11,4 +11,9 @@ class AppColors {
   static Color primaryColor = Colors.blue;
   static Color mainColor = Colors.white;
   static Color buttonColor = Colors.black;
+  static Color headerColor = const Color(0xff5030E5);
+  static Color newTaskColor = const Color(0xffFFA500);
+  static Color complete = const Color(0xff68B266);
+  static Color scaffoldColor = const Color(0xffF5F5F5);
+
 }
