@@ -1,38 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gli/config/style/app_colors.dart';
 
 ThemeData appTheme() {
   return ThemeData(
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    useMaterial3: true,
-    fontFamily: 'Poppins',
-    iconTheme: const IconThemeData(color: Colors.black, size: 22),
-    textTheme: TextTheme(
-      titleLarge: (TextStyle(
-        fontSize: 39,
-        fontWeight: FontWeight.w700,
-        color: AppColors.fBlack,
-      )),
-      bodyLarge: const TextStyle(
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-      bodyMedium: const TextStyle(
-        fontSize: 17,
-        fontWeight: FontWeight.w600,
-      ),
-      bodySmall: TextStyle(
-        color: AppColors.mainColor,
-        fontSize: 14,
-        fontWeight: FontWeight.w300,
-      ),
-      titleSmall: TextStyle(
-        color: AppColors.fBlack,
-        fontSize: 13,
-        fontWeight: FontWeight.w300,
-      ),
-
-    ),
-  );
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+      primaryColor: AppColors.primaryColor,
+      useMaterial3: true,
+      fontFamily: 'Poppins',
+      iconTheme: IconThemeData(color: Colors.black, size: 20.sp));
 }

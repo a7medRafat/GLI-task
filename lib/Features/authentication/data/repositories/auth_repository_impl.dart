@@ -39,7 +39,6 @@ class AuthRepositoryImpl implements AuthRepository {
         });
         return Right(response);
       } on FirebaseAuthException catch (error) {
-        print(error.code);
         return Left(MyServerFailure(error: error));
       }
     } else {
@@ -65,7 +64,6 @@ class AuthRepositoryImpl implements AuthRepository {
         );
         return right(remoteLogin);
       } on FirebaseAuthException catch (e) {
-        print('======> ${e.code}');
         return left(MyServerFailure(error: e));
       }
     } else {
@@ -82,7 +80,7 @@ class AuthRepositoryImpl implements AuthRepository {
             await remoteDataSource.addUserToFireStore(currentUser: currentUser);
         return right(remoteUser);
       } on FirebaseAuthException catch (e) {
-        return left(ServerFailure());
+        return left(MyServerFailure(error: e));
       }
     } else {
       return left(ServerFailure());
@@ -97,84 +95,12 @@ class AuthRepositoryImpl implements AuthRepository {
         final response = await remoteDataSource.getCurrentUser(uid: uid);
 
         return Right(response);
-      } on FirebaseAuthException catch (error) {
-        return Left(ServerFailure());
+      } on FirebaseAuthException catch (e) {
+        return left(MyServerFailure(error: e));
       } catch (error) {
         return Left(ServerFailure());
       }
     } else {
-      return Left(ServerFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, UserCredential>> googleSignIn() async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await remoteDataSource.googleSignIn();
-        final googleUser = CurrentUser(
-            name: response.user!.displayName,
-            email: response.user!.email!,
-            phone: response.user!.phoneNumber ?? '',
-            uid: response.user!.uid,
-            image: AppStrings.newUser,
-            bio: AppStrings.newBio);
-
-        final addUser = await addUserToFireStore(currentUser: googleUser);
-        addUser.fold((failure) {
-          return left(failure);
-        }, (success) {
-          return right(addUser);
-        });
-        final currentUser = await getCurrentUser(uid: response.user!.uid);
-        currentUser.fold((failure) {
-          return left(failure);
-        }, (currentUser) async {
-          CacheHelper.saveData(key: 'uid', value: currentUser.uid);
-        });
-        return Right(response);
-      } on FirebaseAuthException catch (error) {
-        return Left(ServerFailure());
-      }
-    } else {
-      FirebaseException error =
-          FirebaseException(plugin: '', code: 'no-internet-connection');
-      return Left(ServerFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, UserCredential>> facebookSignIn() async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await remoteDataSource.facebookSignIn();
-        final facebookUser = CurrentUser(
-            name: response.user!.displayName,
-            email: response.user!.email,
-            phone: response.user!.phoneNumber ?? '',
-            uid: response.user!.uid,
-            image: response.user!.photoURL ?? AppStrings.newUser,
-            bio: AppStrings.newBio);
-
-        final addUser = await addUserToFireStore(currentUser: facebookUser);
-        addUser.fold((failure) {
-          return left(failure);
-        }, (success) {
-          return right(addUser);
-        });
-        final currentUser = await getCurrentUser(uid: response.user!.uid);
-        currentUser.fold((failure) {
-          return left(failure);
-        }, (currentUser) async {
-          CacheHelper.saveData(key: 'uid', value: currentUser.uid);
-        });
-        return Right(response);
-      } on FirebaseAuthException catch (error) {
-        return Left(ServerFailure());
-      }
-    } else {
-      FirebaseException error =
-          FirebaseException(plugin: '', code: 'no-internet-connection');
       return Left(ServerFailure());
     }
   }

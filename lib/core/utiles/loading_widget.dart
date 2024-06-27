@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({super.key});
+class Loading extends StatelessWidget {
+  const Loading({super.key});
 
 
   @override

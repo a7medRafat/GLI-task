@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gli/config/app_colors.dart';
+import 'package:gli/config/style/app_colors.dart';
 import 'package:gli/config/style/app_fonts.dart';
 import '../../../../../core/utiles/gContainer.dart';
 

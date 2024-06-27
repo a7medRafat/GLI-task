@@ -10,10 +10,6 @@ abstract class AuthRemoteDataSource {
   Future<UserCredential> userLogin(
       {required String email, required String password});
 
-  Future<UserCredential> googleSignIn();
-
-  Future<UserCredential> facebookSignIn();
-
   Future<void> addUserToFireStore({required CurrentUser currentUser});
 
   Future<CurrentUser> getCurrentUser({required String uid});
@@ -50,15 +46,5 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       {required RegisterBody registerBody}) async {
     return await authByFirebase.createUserWithEmailAndPass(
         registerBody: registerBody);
-  }
-
-  @override
-  Future<UserCredential> googleSignIn() async {
-    return await authByFirebase.googleSignIn();
-  }
-
-  @override
-  Future<UserCredential> facebookSignIn() async {
-    return await authByFirebase.facebookSignIn();
   }
 }

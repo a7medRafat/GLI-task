@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:math' as math;
 
-import '../../config/app_colors.dart';
+import '../../config/style/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -20,11 +21,11 @@ class CustomButton extends StatelessWidget {
       child: Transform.rotate(
         angle: math.pi / 4,
         child: Container(
-          width: 60.0,
-          height: 60.0,
+          width: 60.0.w,
+          height: 60.0.h,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.fBlack,
+            color: AppColors.buttonColor,
             borderRadius: BorderRadius.circular(23.0),
           ),
           child: Transform.rotate(

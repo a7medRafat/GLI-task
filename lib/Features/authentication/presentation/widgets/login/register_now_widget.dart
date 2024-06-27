@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gli/config/style/app_fonts.dart';
 import 'package:gli/core/go/go.dart';
 import '../../screens/register_screen/register_screen.dart';
 
@@ -10,17 +11,9 @@ class RegisterNowWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          'Don\'t have an account?',
-          style: Theme.of(context)
-              .textTheme
-              .bodySmall!
-              .copyWith(color: Colors.black, fontSize: 12),
-        ),
+        Text('Don\'t have an account?', style: AppFonts.regular1),
         TextButton(
-            onPressed: () {
-              Go.goTo(context, RegisterScreen());
-            },
+            onPressed: () => Go.goTo(context, const RegisterScreen()),
             child: const Text('Register Now')),
       ],
     );

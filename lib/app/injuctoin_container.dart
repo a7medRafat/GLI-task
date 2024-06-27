@@ -5,8 +5,6 @@ import '../Features/authentication/cubit/register_cubit/register_cubit.dart';
 import '../Features/authentication/data/datasources/auth_remote_data_source.dart';
 import '../Features/authentication/data/repositories/auth_repository_impl.dart';
 import '../Features/authentication/domain/repositories/features_repository.dart';
-import '../Features/authentication/domain/usecases/facebook_sign_in.dart';
-import '../Features/authentication/domain/usecases/google_sign_in.dart';
 import '../Features/authentication/domain/usecases/user_login.dart';
 import '../Features/authentication/domain/usecases/user_registration.dart';
 import '../core/firebase/firebase_auth/auth.dart';
@@ -38,16 +36,10 @@ Future<void> init() async {
   sl.registerLazySingleton<LocalStorage>(() => UserStorage());
   sl.registerLazySingleton<UserStorage>(() => UserStorage());
 
-  ////// login //////
+  ///// login /////
 
-  sl.registerLazySingleton<LoginCubit>(() => LoginCubit(
-      userLoginUseCase: sl(),
-      googleSignInUseCase: sl(),
-      facebookSignInUseCase: sl()));
+  sl.registerLazySingleton<LoginCubit>(
+      () => LoginCubit(userLoginUseCase: sl()));
   sl.registerLazySingleton<UserLoginUseCase>(
       () => UserLoginUseCase(authRepository: sl()));
-  sl.registerLazySingleton<GoogleSignInUseCase>(
-      () => GoogleSignInUseCase(authRepository: sl()));
-  sl.registerLazySingleton<FacebookSignInUseCase>(
-      () => FacebookSignInUseCase(authRepository: sl()));
 }

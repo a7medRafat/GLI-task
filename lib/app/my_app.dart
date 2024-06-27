@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gli/Features/authentication/cubit/login_cubit/login_cubit.dart';
+import 'package:gli/Features/authentication/cubit/register_cubit/register_cubit.dart';
 import 'package:gli/Features/authentication/presentation/screens/login_screen/login_screen.dart';
-import '../Features/authentication/cubit/register_cubit/register_cubit.dart';
 import 'injuctoin_container.dart';
 
 class MyApp extends StatelessWidget {

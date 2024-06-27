@@ -13,7 +13,6 @@ enum AuthResultStatus {
   undefined,
 }
 class AuthExceptionHandler {
-
   static handleException(e) {
     print(e.code);
     var status;

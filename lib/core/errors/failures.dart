@@ -11,10 +11,7 @@ abstract class Failure extends Equatable {
   }
 }
 
-class ServerFailure extends Failure {
-
-
-}
+class ServerFailure extends Failure {}
 
 class CacheFailure extends Failure {
   @override
@@ -33,9 +30,7 @@ class EmptyCacheFailure extends Failure {}
 class MyServerFailure extends Failure {
   final Exception error;
 
-  MyServerFailure({
-    required this.error,
-  });
+  MyServerFailure({required this.error});
 
   String handleException(e) {
     String result;

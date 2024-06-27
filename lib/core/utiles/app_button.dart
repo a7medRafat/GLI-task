@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gli/config/style/app_fonts.dart';
 import 'package:gli/core/utiles/gContainer.dart';
 
-import '../../config/app_colors.dart';
+import '../../config/style/app_colors.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
       function: fun,
       height: size.width * 0.15,
       width: size.width,
-      color: btnColor ?? AppColors.rectangle4,
+      color: btnColor ?? AppColors.buttonColor,
       borderRadius: BorderRadius.circular(20),
       child: Center(child: Text(text, style: AppFonts.bodyText2)),
     );
