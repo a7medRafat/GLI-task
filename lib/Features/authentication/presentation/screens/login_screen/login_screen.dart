@@ -14,24 +14,21 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => context.read<LoginCubit>(),
-        child: SingleChildScrollView(
-          child: Form(
-            key: context
-                .read<LoginCubit>()
-                .loginKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const LoginHeader(),
-                const LoginTextWidget(),
-                LoginInputWidget(),
-                const LoginBtn(),
-                const RegisterNowWidget(),
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Form(
+          key: context
+              .read<LoginCubit>()
+              .loginKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const LoginHeader(),
+              const LoginTextWidget(),
+              LoginInputWidget(),
+              const LoginBtn(),
+              const RegisterNowWidget(),
+            ],
           ),
         ),
       ),

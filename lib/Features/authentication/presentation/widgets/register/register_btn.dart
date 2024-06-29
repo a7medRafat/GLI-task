@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gli/Features/authentication/cubit/register_cubit/register_cubit.dart';
 import 'package:gli/Features/authentication/cubit/register_cubit/register_state.dart';
+import 'package:gli/config/style/app_colors.dart';
 import 'package:gli/core/utiles/loading_widget.dart';
 import '../../../../../core/go/go.dart';
 import '../../../../../core/mysnackbar/mysnackbar.dart';
@@ -30,7 +31,7 @@ class RegisterBtn extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is RegisterLoadingState) {
-          return const Center(child: Loading());
+          return Center(child: Loading(color: AppColors.buttonColor));
         }
         return Padding(
           padding: const EdgeInsets.all(20.0),

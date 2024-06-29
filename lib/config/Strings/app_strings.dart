@@ -27,14 +27,6 @@ class AppStrings {
   static String emailReturn = 'Invalid E-mail Address format';
 
   static String newUser =
-      'https://i.pinimg.com/736x/01/4b/32/014b32b806bace5c59cfee1c4e2b466c.jpg';
+      'https://media.licdn.com/dms/image/C4D0BAQEqwlxgTEiDAA/company-logo_200_200/0/1668961130565?e=1727913600&v=beta&t=QLoW1_44ZMw8Hyc_L8LF5qXW_M6HsZpN35vqe0oDGyw';
 
-  static String newBio = 'write ur bio ..';
-  String profileSuccessUpdate = 'profile updated successfully';
-  String profileImageSuccessUpdate = 'profile Image updated successfully';
-  String successStory = 'story added successfully';
-  String successComment = 'comment added successfully';
-  String successSaved = 'post saved successfully';
-  String deletePost = 'post deleted successfully';
-  String addPost = 'your post has been added successfully';
 }

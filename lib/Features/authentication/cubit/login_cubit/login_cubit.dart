@@ -1,7 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gli/core/local_storage/hive_keys.dart';
+import 'package:gli/core/local_storage/user_storage.dart';
+import 'package:gli/core/shared_preferances/cache_helper.dart';
+import '../../../../core/go/go.dart';
 import '../../domain/usecases/user_login.dart';
+import '../../presentation/screens/login_screen/login_screen.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -25,8 +30,11 @@ class LoginCubit extends Cubit<LoginState> {
     });
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut(context) async {
     await _auth.signOut().then((value) {
+      CacheHelper.removeData(key: 'uid');
+      UserData().deleteData(id: HiveKeys.user);
+      Go.goAndFinish(context, const LoginScreen());
       emit(LogoutSuccessState());
     }).catchError((error) {
       print("Error signing out: $error");

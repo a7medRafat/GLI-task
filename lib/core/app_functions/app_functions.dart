@@ -12,6 +12,7 @@ class AppFunctionsImpl extends AppFunctions {
   @override
   Widget startWidget() {
     final Widget widget;
+
     final String? uid = CacheHelper.getData(key: 'uid');
     if (uid != null) {
       widget = const HomeScreen();

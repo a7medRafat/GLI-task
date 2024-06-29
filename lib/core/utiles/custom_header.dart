@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../config/style/app_colors.dart';
+import 'package:gli/Features/authentication/cubit/login_cubit/login_cubit.dart';
+import 'package:gli/Features/authentication/cubit/login_cubit/login_state.dart';
+import 'package:gli/Features/authentication/presentation/screens/login_screen/login_screen.dart';
+import 'package:gli/core/go/go.dart';
 import '../../config/style/app_fonts.dart';
+import '../../config/style/icons_broken.dart';
 import 'gContainer.dart';
 
 class CustomHeader extends StatelessWidget {
@@ -11,11 +15,15 @@ class CustomHeader extends StatelessWidget {
       {super.key,
       required this.headerTitle,
       required this.actionIcon,
-      required this.color});
+      required this.actionFun,
+      required this.color,
+      required this.home});
 
   final String headerTitle;
   final IconData actionIcon;
+  final Function() actionFun;
   final Color color;
+  final bool home;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +46,33 @@ class CustomHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              GContainer(
-                padding: const EdgeInsets.all(5),
-                color:color.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-                child: Center(
-                    child: Icon(actionIcon, color: color, size: 20.sp)),
+              Row(
+                children: [
+                  GContainer(
+                    function: actionFun,
+                    padding: const EdgeInsets.all(5),
+                    color: color.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                    child: Center(
+                        child: Icon(actionIcon, color: color, size: 20.sp)),
+                  ),
+                  SizedBox(width: 5.w),
+                  if (home == true)
+                    BlocConsumer<LoginCubit, LoginState>(
+                      listener: (context, state) {},
+                      builder: (context, state) {
+                        return GContainer(
+                          function: () => context.read<LoginCubit>().signOut(context),
+                          padding: const EdgeInsets.all(5),
+                          color: color.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(10),
+                          child: Center(
+                              child: Icon(IconBroken.Logout,
+                                  color: color, size: 20.sp)),
+                        );
+                      },
+                    ),
+                ],
               ),
             ],
           ),

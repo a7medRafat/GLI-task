@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gli/Features/authentication/cubit/login_cubit/login_cubit.dart';
 import 'package:gli/Features/authentication/cubit/login_cubit/login_state.dart';
+import 'package:gli/Features/home/presentation/screens/Home_screen.dart';
+import 'package:gli/core/go/go.dart';
 import 'package:gli/core/local_storage/hive_keys.dart';
 import 'package:gli/core/local_storage/user_storage.dart';
 import 'package:gli/core/utiles/loading_widget.dart';
 import '../../../../../app/injuctoin_container.dart';
+import '../../../../../config/style/app_colors.dart';
 import '../../../../../core/mysnackbar/mysnackbar.dart';
 import '../../../../../core/utiles/app_button.dart';
 
@@ -18,7 +21,7 @@ class LoginBtn extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccessState) {
           MySnackBar.show(context, state.successMsg);
-          print(UserData().getData(id: HiveKeys.user)!.name);
+          Go.goAndFinish(context, const HomeScreen());
           sl<LoginCubit>()
             ..emailController.clear()
             ..passwordController.clear();
@@ -29,7 +32,7 @@ class LoginBtn extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is LoginLoadingState) {
-          return const Center(child: Loading());
+          return Center(child: Loading(color: AppColors.buttonColor));
         }
         return Padding(
           padding:

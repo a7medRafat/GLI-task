@@ -17,7 +17,7 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final AuthByFirebase authByFirebase;
-  final StorageByFirebase storageByFirebase;
+  final FirebaseStore storageByFirebase;
 
   AuthRemoteDataSourceImpl({
     required this.authByFirebase,
